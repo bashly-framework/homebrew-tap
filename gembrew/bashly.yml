@@ -2,6 +2,7 @@ gem: bashly
 output: Formula/bashly.rb
 desc: Bash command-line framework and CLI generator
 homepage: https://bashly.dev
+repository: bashly-framework/homebrew-tap
 
 test: |-
   system bin/"bashly", "init", "--minimal"
