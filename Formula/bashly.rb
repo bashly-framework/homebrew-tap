@@ -8,6 +8,7 @@ class Bashly < Formula
   sha256 "9aa5506309be17ecc970a9bb26045426853aa37f78b5d582148ddb39b9c3b3a8"
   license "MIT"
 
+  depends_on "bash"
   depends_on "ruby"
 
   resource "colsole" do
