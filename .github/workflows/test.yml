@@ -2,6 +2,9 @@ name: Test Formulae
 
 on:
   push:
+    branches:
+      - main
+      - master
   pull_request:
   workflow_dispatch:
 
@@ -50,9 +53,12 @@ jobs:
           fi
 
           for formula in "${formulae[@]}"; do
+            formula_name="${formula##*/}"
+            formula_name="${formula_name%.rb}"
+
             brew style "$formula"
-            brew audit --new --online "$formula"
-            brew install --build-from-source "$formula"
-            brew test "$formula"
-            brew uninstall "$formula"
+            brew audit --new --online "$formula_name"
+            brew install --build-from-source "$formula_name"
+            brew test "$formula_name"
+            brew uninstall "$formula_name"
           done

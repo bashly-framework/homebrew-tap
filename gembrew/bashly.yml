@@ -4,6 +4,9 @@ desc: Bash command-line framework and CLI generator
 homepage: https://bashly.dev
 repository: bashly-framework/homebrew-tap
 
+dependencies:
+  - bash
+
 test: |-
   system bin/"bashly", "init", "--minimal"
   system bin/"bashly", "generate"
