@@ -1,0 +1,21 @@
+gem: bashly
+output: Formula/bashly.rb
+desc: Bash command-line framework and CLI generator
+homepage: https://bashly.dev
+
+test: |-
+  system bin/"bashly", "init", "--minimal"
+  system bin/"bashly", "generate"
+  assert_path_exists testpath/"download"
+  system testpath/"download", "--help"
+
+# Optional overrides:
+# version: "1.2.3"
+# desc: Example command-line application
+# homepage: https://example.com
+# license: MIT
+# executable: bashly
+
+# To load the Homebrew test body from a Ruby file, replace `test` above with:
+# test_from_file: support/test.rb
+
