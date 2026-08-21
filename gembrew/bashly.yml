@@ -10,7 +10,7 @@ source:
 
 dependencies:
   - bash
-  - libffi
+  - libffi :system_on_macos
 
 test: |-
   system bin/"bashly", "init", "--minimal"

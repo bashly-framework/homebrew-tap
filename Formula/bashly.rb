@@ -6,8 +6,9 @@ class Bashly < Formula
   license "MIT"
 
   depends_on "bash"
-  depends_on "libffi"
   depends_on "ruby"
+
+  uses_from_macos "libffi"
 
   resource "colsole" do
     url "https://rubygems.org/downloads/colsole-1.0.1.gem"
@@ -150,6 +151,9 @@ class Bashly < Formula
     system "gem", "build", "bashly.gemspec"
     system "gem", "install", "--ignore-dependencies", "bashly-#{version}.gem",
       "--install-dir", libexec, "--no-document"
+
+    rm libexec.glob("extensions/*/*/*/mkmf.log")
+    deuniversalize_machos if OS.mac?
 
     (bin/"bashly").write_env_script libexec/"bin/bashly", GEM_HOME: ENV.fetch("GEM_HOME")
   end
