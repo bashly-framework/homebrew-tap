@@ -6,6 +6,7 @@ class Bashly < Formula
   license "MIT"
 
   depends_on "bash"
+  depends_on "libffi"
   depends_on "ruby"
 
   resource "colsole" do

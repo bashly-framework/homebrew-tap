@@ -10,6 +10,7 @@ source:
 
 dependencies:
   - bash
+  - libffi
 
 test: |-
   system bin/"bashly", "init", "--minimal"
