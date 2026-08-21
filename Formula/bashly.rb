@@ -1,11 +1,8 @@
-# Generated with Gembrew:
-# https://github.com/bashly-framework/homebrew-tap
-
 class Bashly < Formula
   desc "Bash command-line framework and CLI generator"
   homepage "https://bashly.dev"
-  url "https://rubygems.org/downloads/bashly-1.4.0.gem"
-  sha256 "9aa5506309be17ecc970a9bb26045426853aa37f78b5d582148ddb39b9c3b3a8"
+  url "https://github.com/bashly-framework/bashly/archive/refs/tags/v1.4.0.tar.gz"
+  sha256 "fc42ce07cb282aca07f000eb0af6b37b5d637a26b96157a105e9d3f7dd138f70"
   license "MIT"
 
   depends_on "bash"
@@ -149,8 +146,9 @@ class Bashly < Formula
         "--ignore-dependencies", "--install-dir", libexec, "--no-document"
     end
 
-    system "gem", "install", cached_download,
-      "--ignore-dependencies", "--install-dir", libexec, "--no-document"
+    system "gem", "build", "bashly.gemspec"
+    system "gem", "install", "--ignore-dependencies", "bashly-#{version}.gem",
+      "--install-dir", libexec, "--no-document"
 
     (bin/"bashly").write_env_script libexec/"bin/bashly", GEM_HOME: ENV.fetch("GEM_HOME")
   end
