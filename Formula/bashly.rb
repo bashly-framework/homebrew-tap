@@ -5,10 +5,13 @@ class Bashly < Formula
   sha256 "fc42ce07cb282aca07f000eb0af6b37b5d637a26b96157a105e9d3f7dd138f70"
   license "MIT"
 
-  depends_on "bash"
   depends_on "ruby"
 
   uses_from_macos "libffi"
+
+  on_macos do
+    depends_on "bash"
+  end
 
   resource "colsole" do
     url "https://rubygems.org/downloads/colsole-1.0.1.gem"
@@ -152,10 +155,18 @@ class Bashly < Formula
     system "gem", "install", "--ignore-dependencies", "bashly-#{version}.gem",
       "--install-dir", libexec, "--no-document"
 
+    (bin/"bashly").write_env_script libexec/"bin/bashly", GEM_HOME: ENV.fetch("GEM_HOME")
+
     rm libexec.glob("extensions/*/*/*/mkmf.log")
     deuniversalize_machos if OS.mac?
 
-    (bin/"bashly").write_env_script libexec/"bin/bashly", GEM_HOME: ENV.fetch("GEM_HOME")
+    generate_completions_from_executable(
+      "bash",
+      bin/"bashly",
+      "completions",
+      shell_parameter_format: :none,
+      shells:                 [:bash],
+    )
   end
 
   test do
