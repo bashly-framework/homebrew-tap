@@ -128,7 +128,6 @@ class Bashly < Formula
     (bin/"bashly").write_env_script libexec/"bin/bashly", GEM_HOME: ENV.fetch("GEM_HOME")
 
     rm libexec.glob("extensions/*/*/*/mkmf.log")
-    deuniversalize_machos if OS.mac?
 
     generate_completions_from_executable(
       bin/"bashly",
