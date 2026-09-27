@@ -1,5 +1,5 @@
 gem: bashly
-version: 1.4.0
+version: 2.0.0
 output: Formula/bashly.rb
 desc: Bash command-line framework and CLI generator
 homepage: https://bashly.dev
